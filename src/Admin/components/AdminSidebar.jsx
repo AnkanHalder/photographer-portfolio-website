@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import { MdCreateNewFolder,MdEditDocument, } from 'react-icons/md'
+import { MdCreateNewFolder} from 'react-icons/md'
 
 function AdminSidebar(props) {
   return (
