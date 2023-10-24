@@ -3,25 +3,44 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --dark-primary: #000000;
+  --dark-secondary: #323232;
+  --color-primary: #FF0000;
+  --color-secondary: #FF4D00;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+.text-primary{
+  color: var( --color-primary,#FF0000);
+}
+.text-secondary{
+  color: var( --color-secondary,#FF4D00);
+}
+.text-dark-primary{
+  color: var(--dark-primary,#000000);
+}
+.text-dark-secondary{
+  color: var(--dark-secondary, #323232);
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+.primary{
+  background-color: var( --color-primary,#FF0000);
+}
+.secondary{
+  background-color: var( --color-secondary,#FF4D00);
+}
+.dark-primary{
+  background-color: var(--dark-primary,#000000);
+}
+.dark-secondary{
+  background-color: var(--dark-secondary, #323232);
+}
+
+.shadow-large{
+  box-shadow: 0rem 0rem 1.2rem rgba(0, 0, 0, 0.6);
+}
+.shadow-medium{
+  box-shadow: 0rem 0rem 0.6rem rgba(0, 0, 0, 0.6);
+}
+.shadow-small{
+  box-shadow: 0rem 0rem 0.4rem rgba(0, 0, 0, 0.6);
 }

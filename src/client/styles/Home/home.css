@@ -1,0 +1,63 @@
+.plane1{
+    z-index: 0;
+    filter: brightness(0.3);
+}
+.plane2{
+    z-index: 10;
+    filter: brightness(0.4);
+}
+.plane3{
+    z-index: 20;
+    filter: brightness(0.6);
+}
+
+.plane1 .img1,.img2,.img3 {
+    width: 300px;
+}
+.plane2 .img1,.img2,.img3 {
+    width: 300px;
+}
+.plane3 .img1,.img2,.img3 {
+    width: 300px;
+}
+
+.plane1 .img1{
+    top:70%;
+    left: 90%;
+}
+.plane1 .img2{
+    top:65%;
+    left:5%;
+}
+.plane1 .img3{
+    top:20%;
+    left: 35%;
+}
+
+
+.plane2 .img1{
+    left:5%;
+    top:10%;
+}
+.plane2 .img2{
+    top:5%;
+    left: 80%;
+}
+.plane2 .img3{
+    top:60%;
+    left:60%;
+}
+
+
+.plane3 .img1{
+    top:2.5%;
+    left: 65%;
+}
+.plane3 .img2{
+    top:75%;
+    left: 40%;
+}
+.plane3 .img3{
+    top:0%;
+    left: 0%;
+}

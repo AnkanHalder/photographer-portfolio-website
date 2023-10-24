@@ -4,6 +4,11 @@ module.exports = {
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+    "./src/Admin/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/client/Components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/Client/components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/client/Pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/client/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {

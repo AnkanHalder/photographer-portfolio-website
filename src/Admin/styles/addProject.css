@@ -1,0 +1,7 @@
+.add-project__input:hover{
+ box-shadow: 0rem 0rem 0.5rem rgba(32,32,32,0.4);
+}
+
+.admin-pop-up{
+    background-color: rgba(255, 255, 255, 0.885);
+}
