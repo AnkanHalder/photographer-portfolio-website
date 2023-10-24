@@ -23,27 +23,21 @@ function AddProjectPage(props) {
             updated_catagories[index].name = value;
             return updated_catagories;
         });
-        console.log("after Updation:",catagories)
     }
     const updateCategoryImage = (index, images) => {
         setCatagories((prev) => {
           const updatedCategories = [...prev];
-          console.log("images:",images,updatedCategories[index].imageUrls);
           updatedCategories[index].imageUrls.push(...images);
-          console.log("after Updation:", updatedCategories);
           return updatedCategories;
         });
-        console.log("before Updation:", catagories);
     };
       
     const removeCategory = (index) => {
         setCatagories((prev)=>{
             const updated_catagories = [...prev];
             updated_catagories.splice(index, 1);
-            console.log("before Deletion:",updated_catagories)
             return updated_catagories;
         });
-        console.log("after Deletion:",catagories)
     }
 
     const handleSubmit = async () => {
@@ -68,14 +62,8 @@ function AddProjectPage(props) {
                   );
       
                   // Generates cloudinary URL
-                  const imageUploadResponse = await fetch(
-                    process.env.NEXT_PUBLIC_IMAGE_FETCH_LINK,
-                    {
-                      method: "POST",
-                      body: imageFormData,
-                    }
-                  );
-      
+                  const imageUploadResponse = await ApiCaller.uploadToCloudinary(imageFormData);
+    
                   if (imageUploadResponse.ok) {
                     // Assigns Cloudinary URLs to respective categories
                     const imgData = await imageUploadResponse.json();
