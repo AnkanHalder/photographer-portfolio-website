@@ -1,5 +1,5 @@
 {
-  "name": "photo-portfolio",
+  "name": "photographer-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,26 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^6.4.2",
-    "@fortawesome/free-solid-svg-icons": "^6.4.2",
-    "@fortawesome/react-fontawesome": "^0.2.0",
-    "body-parser": "^1.20.2",
+    "axios": "^1.5.1",
     "cloudinary": "^1.41.0",
     "dotenv": "^16.3.1",
-    "eslint": "8.49.0",
-    "eslint-config-next": "13.5.2",
-    "express": "^4.18.2",
-    "mongodb": "^6.1.0",
-    "mongoose": "^7.5.3",
-    "next": "13.5.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "mongoose": "^7.6.3",
+    "next": "13.5.4",
+    "react": "^18",
+    "react-dom": "^18",
     "react-dropzone": "^14.2.3",
-    "react-router-dom": "^6.16.0"
+    "react-icons": "^4.11.0",
+    "react-parallax-tilt": "^1.7.171"
   },
   "devDependencies": {
-    "autoprefixer": "^10.4.16",
-    "postcss": "^8.4.30",
-    "tailwindcss": "^3.3.3"
+    "autoprefixer": "^10",
+    "eslint": "^8",
+    "eslint-config-next": "13.5.4",
+    "postcss": "^8",
+    "tailwindcss": "^3"
   }
 }

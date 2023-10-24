@@ -1,8 +1,8 @@
 import { NextResponse } from "next/server";
 import Project from "@/models/project";
 import connectMongoDB from "@/libs/mongodb";
+import FormData from 'form-data';
 
-//create a new project at ["http://localhost:3000/api"]
 export async function POST(request) {
   try {
     if (request.method !== "POST") {
@@ -13,7 +13,7 @@ export async function POST(request) {
     }
 
     const { title, description, categories } = await request.json();
-
+    await connectMongoDB();
     // Check if a project with the same title already exists
     const existingProject = await Project.findOne({ title });
     if (existingProject) {
@@ -22,8 +22,6 @@ export async function POST(request) {
         message: "Project with the same name already exists",
       });
     }
-
-    await connectMongoDB();
 
     const project = new Project({
       title,

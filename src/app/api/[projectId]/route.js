@@ -21,7 +21,7 @@ export async function GET(request, { params }) {
 
     return NextResponse.json({ project }, { status: 200 });
   } catch (error) {
-    console.error(error);
+    console.error(error); 
     return NextResponse.error({ statusCode: 500, message: error.message });
   }
 }
