@@ -6,7 +6,7 @@ import AddProjectPage from './components/AddProjectPage'
 function AdminPage(props) {
   return (
     <main>
-        <AdminSidebar/>
+        <AdminSidebar active={props.menu}/>
         <div className="admin-main-content">
             {(props.menu == "AddProject")?<AddProjectPage menu={props.menu}/>:null}
         </div>

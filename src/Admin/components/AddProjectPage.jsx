@@ -131,7 +131,7 @@ function AddProjectPage(props) {
                 </button>
             </div>
             <div className='w-full flex items-center justify-center'>
-                <button className='p-4 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-sans my-6 rounded-xl shadow-lg hover:bg-gradient-to-r hover:from-blue-600 hover:to-purple-600 focus:outline-none'
+                <button className='p-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-sans my-6 rounded-xl shadow-lg hover:bg-gradient-to-r hover:from-yellow-400 hover:to-orange-600 focus:outline-none'
                         onClick={(e) => {
                             e.preventDefault();
                             handleSubmit();
