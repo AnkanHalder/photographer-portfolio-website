@@ -1,15 +1,10 @@
 import React from 'react'
-import Plane from '../Components/Home/Plane'
+import HomeCarouselPlane from '../Components/Home/HomeCarouselPlane'
 
-function HomePage() {
+const HomePage = () => {
   return (
-    <div class="min-h-screen w-screen bg-black">
-        <div className='h-full w-full'>
-            <Plane planeNumber={"1"} images={["/Images/fantasy.jpg","/Images/mountain.jpg","/Images/fox.jpg"]} />
-            <Plane planeNumber={"2"} images={["/Images/fantasy.jpg","/Images/mountain.jpg","/Images/fox.jpg"]} />
-            <Plane planeNumber={"3"} images={["/Images/fantasy.jpg","/Images/mountain.jpg","/Images/fox.jpg"]} />
-        </div>
-       
+    <div className='min-h-screen w-screem overflow-x-hidden flex justify-center'>
+        <HomeCarouselPlane/>
     </div>
   )
 }

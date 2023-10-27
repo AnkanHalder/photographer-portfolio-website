@@ -122,7 +122,7 @@ function AddProjectPage(props) {
                         handleRemoveCategory={()=>{removeCategory(i)}}
                     />
             ))}
-            <div className='w-full flex items-center justify-center my-16'>
+            <div className='w-full flex items-center justify-center my-16 hover:scale-105'>
                 <button className='p-4 bg-black text-white font-sans my-6 rounded-xl' 
                     onClick={()=>{
                         setCatagories((prev)=>([...prev,{name:"",imageUrls:[]}]));
@@ -130,7 +130,7 @@ function AddProjectPage(props) {
                     Add Catagory
                 </button>
             </div>
-            <div className='w-full flex items-center justify-center'>
+            <div className='w-full flex items-center justify-center hover:scale-105'>
                 <button className='p-4 bg-gradient-to-r from-yellow-500 to-orange-500 text-white font-sans my-6 rounded-xl shadow-lg hover:bg-gradient-to-r hover:from-yellow-400 hover:to-orange-600 focus:outline-none'
                         onClick={(e) => {
                             e.preventDefault();
