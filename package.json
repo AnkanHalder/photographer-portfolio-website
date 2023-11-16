@@ -18,7 +18,8 @@
     "react-dom": "^18",
     "react-dropzone": "^14.2.3",
     "react-icons": "^4.11.0",
-    "react-parallax-tilt": "^1.7.171"
+    "react-parallax-tilt": "^1.7.171",
+    "react-responsive-masonry": "^2.1.7"
   },
   "devDependencies": {
     "autoprefixer": "^10",

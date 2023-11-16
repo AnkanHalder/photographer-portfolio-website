@@ -7,6 +7,7 @@ try {
   // If the model doesn't exist, define it
   const projectSchema = new mongoose.Schema({
     title: String,
+    thumbnail: String,
     description: String,
     categories: [
       {

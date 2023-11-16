@@ -1,12 +1,14 @@
 "use client"
-import React,{useState} from 'react'
+import React,{useState,useCallback} from 'react'
 import Input from './AddProjectComp/Input'
 import "@/Admin/styles/addProject.css"
 import Catagory from './AddProjectComp/Catagory'
 import { ApiCaller } from '@/ApiManager/apiCaller'
+import { useDropzone } from 'react-dropzone'
 
 const defaultProject = {
     projectName: "",
+    thumbnail: "",
     projectDescription: "",
     catagories: []
 }
@@ -14,8 +16,18 @@ const defaultProject = {
 function AddProjectPage(props) {
     const [title,setTitle] = useState(defaultProject.projectName);
     const [description,setDescription] = useState(defaultProject.projectDescription);
+    const [thumbnail,setThumbnail] = useState(defaultProject.thumbnail);
     const [catagories,setCatagories] = useState(defaultProject.catagories);
+    const [thumbnailURL,setThumbnailURL] = useState("");
 
+    const onDrop = useCallback(async(acceptedFiles)=>{
+      if(acceptedFiles.length){
+        Object.assign(acceptedFiles[0], {preview: URL.createObjectURL(acceptedFiles[0])})
+        setThumbnail(acceptedFiles[0]);
+      }
+    },[]);
+
+    const {getRootProps, getInputProps, isDragActive} = useDropzone({onDrop});
 
     const updateCategoryName = (index,value) => {
         setCatagories((prev)=>{
@@ -27,7 +39,7 @@ function AddProjectPage(props) {
     const updateCategoryImage = (index, images) => {
         setCatagories((prev) => {
           const updatedCategories = [...prev];
-          updatedCategories[index].imageUrls.push(...images);
+          updatedCategories[index].imageUrls = [...images];
           return updatedCategories;
         });
     };
@@ -41,6 +53,25 @@ function AddProjectPage(props) {
     }
 
     const handleSubmit = async () => {
+        // add thumbnail
+        const imageFormData = new FormData();
+        imageFormData.append("file", thumbnail);
+        imageFormData.append(
+            "upload_preset",
+            process.env.NEXT_PUBLIC_UPLOAD_PRESET
+        );
+        imageFormData.append("folder", title);
+      
+        // Generates cloudinary URL
+        const imageUploadResponse = await ApiCaller.uploadToCloudinary(imageFormData);
+        if (imageUploadResponse.success) {
+                    // Assigns Cloudinary URLs to respective categories
+            setThumbnailURL(imageUploadResponse.data.secure_url);
+        } else {
+              console.error("Error uploading image:", imageUploadResponse);
+        }
+
+
         const imageArr = {}; // Initialize an empty object
       
         try {
@@ -60,18 +91,20 @@ function AddProjectPage(props) {
                     "upload_preset",
                     process.env.NEXT_PUBLIC_UPLOAD_PRESET
                   );
+                  imageFormData.append("folder", title);
       
                   // Generates cloudinary URL
                   const imageUploadResponse = await ApiCaller.uploadToCloudinary(imageFormData);
-    
-                  if (imageUploadResponse.ok) {
+                  console.log(imageUploadResponse);
+                  if (imageUploadResponse.success) {
                     // Assigns Cloudinary URLs to respective categories
-                    const imgData = await imageUploadResponse.json();
+                    const imgData = imageUploadResponse.data;
                     const imageURL = imgData.secure_url; // Cloudinary URL
                     console.log(imageURL);
                     imageArr[cat.name].push(imageURL);
+                    console.log("new Image Arr is ",imageArr,"\n");
                   } else {
-                    console.error("Error uploading image:", imageUploadResponse);
+                    console.log("Error uploading image:", imageUploadResponse);
                   }
                 })
               );
@@ -80,10 +113,11 @@ function AddProjectPage(props) {
         } catch (error) {
           console.error("Error uploading images:", error);
         }
-      
+       console.log(imageArr,thumbnailURL);
         const data = await ApiCaller.addProject({
           title: title,
           description: description,
+          thumbnail: thumbnailURL,
           categories: catagories.map((cat) => {
             return {
               name: cat.name,
@@ -97,6 +131,17 @@ function AddProjectPage(props) {
         <div>
             <div className='mb-4 mt-6 text-center'>
                 <h1 className="text-4xl font-sans font-extrabold">Add Project</h1>
+            </div>
+            <div className='my-10 flex flex-col items-center justify-center'>
+            <div className='my-8 flex items-center justify-center'>
+                <div {...getRootProps()}>
+                    <input {...getInputProps({})} />
+                    <p className="px-8 py-4 bg-blue-500 hover:bg-blue-400 text-white">
+                      Upload Project Thumbnail
+                    </p>
+                </div>  
+            </div>
+              <img width={"300px"} alt="project thumbnail " src={thumbnail.preview} />
             </div>
             <Input labelText="Project Name" 
                 name={"project-name"} 
@@ -112,6 +157,7 @@ function AddProjectPage(props) {
                 input={"textarea"} placeholder={"Enter Project Description"}/>
             {catagories.map((cat, i) => (
                     <Catagory
+                        edit={props.edit}
                         index={i}
                         catagories={catagories}
                         key={i}
@@ -122,8 +168,8 @@ function AddProjectPage(props) {
                         handleRemoveCategory={()=>{removeCategory(i)}}
                     />
             ))}
-            <div className='w-full flex items-center justify-center my-16 hover:scale-105'>
-                <button className='p-4 bg-black text-white font-sans my-6 rounded-xl' 
+            <div className='w-full flex items-center justify-center my-16 '>
+                <button className='p-4 bg-black text-white font-sans my-6 rounded-xl hover:scale-105' 
                     onClick={()=>{
                         setCatagories((prev)=>([...prev,{name:"",imageUrls:[]}]));
                     }}>

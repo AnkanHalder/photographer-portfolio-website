@@ -1,0 +1,43 @@
+.writeReview{
+    background-color: #111a2c;
+    display: grid;
+}
+
+.reviewbox:hover{
+    box-shadow: 0rem 0rem 1rem rgba(0,0,0,0.6);
+}
+
+@media only screen and ( min-width: 768px ) {
+    .writeReview{
+        height: 60vh;
+        width: 60vw;
+        grid-template-columns: 40% 50%;
+        grid-template-rows: 1fr;
+    }
+}
+@media only screen and ( max-width: 768px ) {
+    .writeReview{
+        height: 100vh;
+        width: 100vw;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 1fr;
+    }
+}
+
+.my-masonry-grid {
+    display: -webkit-box; /* Not needed if autoprefixing */
+    display: -ms-flexbox; /* Not needed if autoprefixing */
+    display: flex;
+    margin-left: -30px; /* gutter size offset */
+    width: auto;
+  }
+  .my-masonry-grid_column {
+    padding-left: 30px; /* gutter size */
+    background-clip: padding-box;
+  }
+  
+  /* Style your items */
+  .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+    background: grey;
+    margin-bottom: 30px;
+  }

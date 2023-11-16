@@ -25,26 +25,31 @@ function Catagory(props) {
           </div>
           <div className="image-container" style={{ columnWidth: "300px"}}>
             <div>
-                {
-                  props.catagories[props.index].imageUrls.map((file, index) => (
-                    <div key={index} className="pic border-dashed my-2 relative">
-                      <img src={URL.createObjectURL(file)} alt={file.name} className="relative" />
-                      <button 
-                        className="p-4 bg-red-500 absolute top-0 right-2 rounded-full z-10 text-white"
-                        onClick={()=>{
-                          const updatedFiles = [...props.catagories[props.index].imageUrls];
-                          updatedFiles.splice(index, 1); 
-                          props.setCatagories((prev)=>{
-                            const updatedCategories=[...prev];
-                            updatedCategories[props.index].imageUrls = updatedFiles;
-                            return updatedCategories; 
-                          });
-                        }}>
-                        X
-                      </button>
-                    </div>
-                  ))
-                }
+              {props.catagories[props.index].imageUrls.map((file, index) => (
+                <div key={index} className="pic border-dashed my-2 relative">
+                  {file.type.startsWith("image/") ? (
+                    <img src={URL.createObjectURL(file)} alt={file.name} className="relative" />
+                  ) : file.type.startsWith("video/") ? (
+                    <video src={URL.createObjectURL(file)} alt={file.name} className="relative" controls />
+                  ) : (
+                    <p>Unsupported file type: {file.type}</p>
+                  )}
+                  <button
+                    className="p-4 bg-red-500 absolute top-0 right-2 rounded-full z-10 text-white"
+                    onClick={() => {
+                      const updatedFiles = [...props.catagories[props.index].imageUrls];
+                      updatedFiles.splice(index, 1);
+                      props.setCatagories((prev) => {
+                        const updatedCategories = [...prev];
+                        updatedCategories[props.index].imageUrls = updatedFiles;
+                        return updatedCategories;
+                      });
+                    }}
+                  >
+                    X
+                  </button>
+                </div>
+              ))}
             </div>
           </div>
           <div className='flex flex-col md:flex-row items-center gap-4'>

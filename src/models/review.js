@@ -7,7 +7,9 @@ try {
   // If the model doesn't exist, define it
   const ReviewSchema = new mongoose.Schema({
     name: String,
-    Rateing: Number,
+    email: String,
+    rate: Number,
+    date: Date,
     review: String
   });
 

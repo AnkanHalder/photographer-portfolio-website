@@ -1,0 +1,12 @@
+.imagediv:hover .imagediv-image {
+    filter: blur(5px); /* Adjust the blur radius as needed */
+    opacity: 0.8;
+  }
+.imagediv-overlay{
+    opacity: 0;
+    transition: opacity 0.1s ease-out;
+}
+
+.imagediv-overlay:hover{
+    opacity: 1;
+}

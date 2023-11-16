@@ -24,8 +24,8 @@ function AdminSidebar(props) {
                 </a>
             </li>
             <li
-                className={"py-4 cursor-pointer " + ((props.active!="Gallery")?"nav-item" : "nav-item-active")}>
-                <a href="/admin/Gallery" className='flex items-center justify-between '>
+                className={"py-4 cursor-pointer " + ((props.active!="AddGallery")?"nav-item" : "nav-item-active")}>
+                <a href="/admin/AddGallery" className='flex items-center justify-between '>
                     <div style={{paddingLeft: "0.8rem" ,width:"4rem",fontSize:"1.5rem"}}><MdCreateNewFolder/></div>
                     <h1 className="nav-text text-left w-full">Gallery</h1>
                 </a>

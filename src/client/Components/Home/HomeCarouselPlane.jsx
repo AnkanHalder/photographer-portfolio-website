@@ -3,9 +3,12 @@ import Image from "next/image";
 import { useEffect,useState } from "react";
 
 const imageArr = [
-  "/Images/fantasy.jpg",
-  "/Images/fox.jpg",
-  "/Images/mountain.jpg"
+  "/HomeImages/1.jpg",
+  "/HomeImages/2.jpg",
+  "/HomeImages/3.jpg",
+  "/HomeImages/4.jpg",
+  "/HomeImages/5.jpg",
+  "/HomeImages/6.jpg"
 ];
 
 const HomeCarouselPlane = () => {
@@ -23,17 +26,18 @@ const HomeCarouselPlane = () => {
   },[]);
 
   return (
-    <div className="relative h-1/2 md:h-full w-screen overflow-hidden flex">
-      {imageArr.map((img, i) => (
-          <img 
-            key={i} 
-            src={img} 
-            alt={`Image ${i}`} 
-            style={{ 
+    <div className="h-1/2 md:h-screen w-screen overflow-hidden flex">
+      {
+        imageArr.map((image,i)=>
+          <div className="relative bg-yellow-500 w-full h-full transition-transform duration-1000" style={{
+              minWidth: "100vw", 
               transform: `translateX(-${curr*100}%)`  
-            }} 
-            className=" object-cover object-center transition-transform ease-out duration-1000"/>
-      ))}
+            }} >
+            <Image src={image} layout="fill" objectFit="cover" objectPosition="center"/>
+          </div>
+        )
+      }
+      
     </div>
   );
 };
